@@ -1,7 +1,9 @@
-package com.example.storefrontv2.data;
+package com.example.storefrontv2.data.model;
 
 import com.example.storefrontv2.ChatService;
-import com.example.storefrontv2.data.model.LoggedInUser;
+import com.example.storefrontv2.data.Result;
+
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,40 +12,33 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Class that handles authentication w/ login credentials and retrieves user information.
- */
-public class LoginDataSource {
-
-    public Result<LoggedInUser> login(String username, String password) {
+public class BrowseDataSource {
+    public JSONArray retrieve() {
+        JSONArray items = null;
         HttpURLConnection c = null;
         try {
-            URL url = new URL(ChatService.BASE_URL + "username=" + username + "&password=" + password);
+            URL url = new URL(ChatService.STORE_URL + "/retrieve");
             c = (HttpURLConnection) url.openConnection();
             c.setUseCaches(true);
             c.setRequestMethod("GET");
 
-            if(c.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            if (c.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), StandardCharsets.UTF_8));
                 String token = br.readLine();
                 System.out.println(token + "BLABLABLBALBLA");
-                LoggedInUser fakeUser = new LoggedInUser(username,token);
+                items = new JSONArray(token);
                 c.getInputStream().close(); // Why?
-                return new Result.Success<>(fakeUser);
+                return items;
             } else {
                 System.out.println("ERROR: response code " + c.getResponseCode() + " " + c.getResponseMessage());
                 System.out.println(url);
             }
 
-            return new Result.Error(new IOException("Error logging in " + c.getResponseMessage()));
+            return items;
         } catch (Exception e) {
-            return new Result.Error(new IOException("Error logging in", e));
+            return items;
         } finally {
-            if(c != null) c.disconnect();
+            if (c != null) c.disconnect();
         }
-    }
-
-    public void logout() {
-        // TODO: revoke authentication
     }
 }

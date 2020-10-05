@@ -1,46 +1,84 @@
 package com.example.storefrontv2;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
+
+import com.example.storefrontv2.data.model.BrowseDataSource;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     ChatService service;
+    BrowseDataSource browseDataSource;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LinearLayout itemList = findViewById(R.id.itemList);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        service = ChatService.getInstance();
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            setUserInfo();
-        });
-    }
+        browseDataSource = new BrowseDataSource();
+        JSONArray items = browseDataSource.retrieve();
+        if (items == null) {
+            //ERROR
+            System.out.println("ERROR");
+        } else {
+            //SUCCESS
+            for (int i = 0; i < items.length(); i++) {
+                try {
+                    JSONObject item = (JSONObject) items.get(i);
+                    String id = item.getString("id");
+                    String description = item.getString("description");
+                    String image = item.getString("image");
+                    String title = item.getString("title");
+                    String price = item.getString("price");
+                    String userid = item.getString("userid");
 
-    private void setSupportActionBar(Toolbar toolbar) {
-    }
 
-    private void setUserInfo() {
-        User user = service.getUser();
-        if(user != null) {
-            TextView uid = findViewById(R.id.uid);
-            TextView firstName = findViewById(R.id.last_name);
-            TextView lastName = findViewById(R.id.first_name);
+                    LayoutInflater inflater = this.getLayoutInflater();
+                    View view = inflater.inflate(R.layout.store_item, itemList, false);
+                    itemList.addView(view);
+                    ImageView img = view.findViewById(R.id.imageView);
+                    String pureBase64Encoded = image.substring(image.indexOf(",")  + 1);
+                    byte[] decodedString = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    img.setImageBitmap(decodedByte);
+                    System.out.println( "TESTESTTEST" + image);
 
-            uid.setText(user.getUserid());
-            firstName.setText(user.getFirstName());
-            lastName.setText(user.getLastName());
+                    TextView txtTitle = view.findViewById(R.id.title);
+                    txtTitle.setText(title);
+                    TextView txtDes = view.findViewById(R.id.description);
+                    txtDes.setText(description);
+                    TextView txtPrice = view.findViewById(R.id.price);
+                    txtPrice.setText(price);
+
+                    System.out.println(description);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Sucess!");
         }
+        service = ChatService.getInstance();
+
     }
 }

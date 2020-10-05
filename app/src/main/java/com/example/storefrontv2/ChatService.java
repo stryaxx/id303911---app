@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 
 public class ChatService implements Response.ErrorListener {
     public static final String BASE_URL = "http://192.168.1.56:8080/Storefront/api/account/login2?";
+    public static final String STORE_URL = "http://192.168.1.56:8080/Storefront/api/store";
     static ChatService SINGLETON;
 
     User user;
