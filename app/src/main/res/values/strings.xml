@@ -3,7 +3,8 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="register">Create new account</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -15,10 +16,20 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="create_user">Create User</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="user_id">User Id</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
+
+    <string name="firstname">First name</string>
+    <string name="lastname">Last name</string>
+    <string name="street">Street address</string>
+    <string name="street_num">Street and number</string>
+    <string name="city">City</string>
+    <string name="zcode">Zip code</string>
+    <string name="email">Email address</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
 </resources>

@@ -1,8 +1,11 @@
 package com.example.storefrontv2;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ClickableSpan;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,21 +23,26 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     ChatService service;
     BrowseDataSource browseDataSource;
+    TextView registerTxt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        registerTxt = (TextView) findViewById(R.id.register);
         LinearLayout itemList = findViewById(R.id.itemList);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         browseDataSource = new BrowseDataSource();
         JSONArray items = browseDataSource.retrieve();
@@ -81,4 +89,5 @@ public class MainActivity extends AppCompatActivity {
         service = ChatService.getInstance();
 
     }
+
 }

@@ -26,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".createUser"
+            android:label="@string/create_user"></activity>
     </application>
 
 </manifest>
