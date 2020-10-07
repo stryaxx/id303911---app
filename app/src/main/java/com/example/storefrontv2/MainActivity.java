@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
                     LayoutInflater inflater = this.getLayoutInflater();
                     View view = inflater.inflate(R.layout.store_item, itemList, false);
+                    //view.callOnClick()
+                    //TODO
                     itemList.addView(view);
                     ImageView img = view.findViewById(R.id.imageView);
                     String pureBase64Encoded = image.substring(image.indexOf(",")  + 1);

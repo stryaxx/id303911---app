@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:id="@+id/titleEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTxt"
+        android:hint="Title here"
+        android:textSize="18sp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/et_background"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp" />
+
+    <TextView
+        android:id="@+id/priceTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:textSize="20sp"
+        android:layout_below="@id/titleEdit"
+        android:textColor="@color/black"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:id="@+id/priceEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priceTxt"
+        android:hint="Insert price here"
+        android:textSize="18sp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/et_background"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp" />
+
+    <TextView
+        android:id="@+id/descTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="20sp"
+        android:layout_below="@id/priceEdit"
+        android:textColor="@color/black"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:id="@+id/descEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descTxt"
+        android:hint="Insert description here"
+        android:textSize="18sp"
+        android:inputType="textMultiLine"
+        android:maxLines="2"
+        android:paddingLeft="5dp"
+        android:background="@drawable/et_background"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp" />
+
+    <TextView
+        android:id="@+id/imgTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/img"
+        android:textSize="20sp"
+        android:layout_below="@id/descEdit"
+        android:textColor="@color/black"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:layout_marginStart="25dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@id/imgTxt"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</RelativeLayout>
