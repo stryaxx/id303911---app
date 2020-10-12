@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <Button
+        android:id="@+id/previous"
+        android:layout_width="match_parent"
+        android:layout_below="@id/imageView3"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="300dp"
+        android:text="@string/previous"
+        android:layout_height="wrap_content">
+
+    </Button>
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginStart="300dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/next"
+        android:layout_height="wrap_content">
+    </Button>
+    <Button
+        android:id="@+id/buy"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/buy"
+        android:layout_height="wrap_content">
+    </Button>
+    <TextView
+        android:id="@+id/titleTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/title"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_below="@+id/buy"
+        android:layout_marginTop="30dp"
+        />
+    <TextView
+        android:id="@+id/priceTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/price"
+        android:textSize="16dp"
+        android:textColorHint="@color/black"
+        android:layout_below="@+id/titleTxt"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/descriptionTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:textSize="16dp"
+        android:textColorHint="@color/black"
+        android:layout_below="@id/priceTxt"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="50dp"
+        android:maxWidth="300dp"
+        android:maxHeight="300dp"
+        android:layout_marginStart="135dp"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+
+
+
+</RelativeLayout>
