@@ -1,6 +1,6 @@
 package com.example.storefrontv2.data;
 
-import com.example.storefrontv2.ChatService;
+import com.example.storefrontv2.StoreService;
 import com.example.storefrontv2.data.model.LoggedInUser;
 
 import java.io.BufferedReader;
@@ -18,7 +18,7 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password) {
         HttpURLConnection c = null;
         try {
-            URL url = new URL(ChatService.BASE_URL + "username=" + username + "&password=" + password);
+            URL url = new URL(StoreService.BASE_URL + "username=" + username + "&password=" + password);
             c = (HttpURLConnection) url.openConnection();
             c.setUseCaches(true);
             c.setRequestMethod("GET");
@@ -27,6 +27,7 @@ public class LoginDataSource {
                 BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream(), StandardCharsets.UTF_8));
                 String token = br.readLine();
                 System.out.println(token + "BLABLABLBALBLA");
+                CurrentClient.SESSION_ID = token;
                 LoggedInUser fakeUser = new LoggedInUser(username,token);
                 c.getInputStream().close(); // Why?
                 return new Result.Success<>(fakeUser);

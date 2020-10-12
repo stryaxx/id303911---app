@@ -4,33 +4,31 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ClickableSpan;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import com.example.storefrontv2.data.model.BrowseDataSource;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.storefrontv2.ui.NewItem;
+import com.example.storefrontv2.ui.ViewItemActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
-    ChatService service;
+    StoreService service;
     BrowseDataSource browseDataSource;
     TextView registerTxt;
+    Button uploadItem;
 
 
     @Override
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout itemList = findViewById(R.id.itemList);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        uploadItem = (Button) findViewById(R.id.uploadItem);
 
 
 
@@ -64,7 +63,25 @@ public class MainActivity extends AppCompatActivity {
 
                     LayoutInflater inflater = this.getLayoutInflater();
                     View view = inflater.inflate(R.layout.store_item, itemList, false);
-                    //view.callOnClick()
+
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            TextView txtTitle = view.findViewById(R.id.title);
+                            TextView txtItemId = view.findViewById(R.id.itemId);
+                            TextView txtDes = view.findViewById(R.id.description);
+                            TextView txtPrice = view.findViewById(R.id.price);
+
+                            Intent showItem = new Intent(MainActivity.this, ViewItemActivity.class);
+                            showItem.putExtra("Title", txtTitle.getText());
+                            showItem.putExtra("ItemId", txtItemId.getText());
+                            showItem.putExtra("Description", txtDes.getText());
+                            showItem.putExtra("Price", txtPrice.getText());
+
+                            startActivity(showItem);
+
+                        }
+                    });
                     //TODO
                     itemList.addView(view);
                     ImageView img = view.findViewById(R.id.imageView);
@@ -76,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
                     TextView txtTitle = view.findViewById(R.id.title);
                     txtTitle.setText(title);
+                    TextView txtItemId = view.findViewById(R.id.itemId);
+                    txtItemId.setText(id);
                     TextView txtDes = view.findViewById(R.id.description);
                     txtDes.setText(description);
                     TextView txtPrice = view.findViewById(R.id.price);
@@ -88,7 +107,15 @@ public class MainActivity extends AppCompatActivity {
             }
             System.out.println("Sucess!");
         }
-        service = ChatService.getInstance();
+        service = StoreService.getInstance();
+
+        uploadItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NewItem.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

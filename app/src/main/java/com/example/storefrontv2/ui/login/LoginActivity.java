@@ -6,7 +6,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.app.Application;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,25 +21,21 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.storefrontv2.ChatService;
+import com.example.storefrontv2.StoreService;
 import com.example.storefrontv2.MainActivity;
 import com.example.storefrontv2.R;
 import com.example.storefrontv2.createUser;
 import com.example.storefrontv2.data.model.ImageDataSource;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -210,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
         /*String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();*/
-        ChatService.initialize(this,model.getToken());
+        StoreService.initialize(this,model.getToken());
         startActivity(new Intent(this, MainActivity.class));
     }
 

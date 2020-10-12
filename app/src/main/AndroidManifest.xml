@@ -30,6 +30,11 @@
         </activity>
         <activity android:name=".createUser"
             android:label="@string/create_user"></activity>
+        <activity android:name=".ui.ViewItemActivity"
+            android:label="@string/viewItemActivity"></activity>
+        <activity android:name=".ui.NewItem"
+            android:label="@string/newItemActivity"></activity>
+
     </application>
 
 </manifest>

@@ -1,6 +1,6 @@
 package com.example.storefrontv2.data.model;
 
-import com.example.storefrontv2.ChatService;
+import com.example.storefrontv2.StoreService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +21,7 @@ public class ImageDataSource {
         JSONArray items = null;
         HttpURLConnection c = null;
         try {
-            URL url = new URL(ChatService.IMAGE_URL + "/retrieve?id=" + id);
+            URL url = new URL(StoreService.IMAGE_URL + "/retrieve?id=" + id);
             c = (HttpURLConnection) url.openConnection();
             c.setUseCaches(true);
             c.setRequestMethod("GET");
@@ -55,7 +55,7 @@ public class ImageDataSource {
 
         String response = "";
         try {
-            URL url= new URL(ChatService.IMAGE_URL + "/upload");;
+            URL url= new URL(StoreService.IMAGE_URL + "/upload");;
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             DataOutputStream printout;
             DataInputStream input;
